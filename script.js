@@ -6,16 +6,41 @@ const form = document.querySelector('#form')
 const inputTransactionName = document.querySelector('#textTransaction')
 const inputTransactionAmount = document.querySelector('#amountTransaction')
 const transactionType = document.querySelector('#transactionType')
+const monthType = document.querySelector('#monthType')
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
 
+
+
+const teste = () => 
+{
+
+    let firstnumber = balanceDisplay.textContent
+    let arraybalance = [];
+    arraybalance = firstnumber.split(" ");
+    let negNum = parseFloat(arraybalance[1])
+    
+
+    if (negNum < 0) {
+       
+        document.querySelector('#balance').style.color = 'red'
+    }
+    else {
+        
+        document.querySelector('#balance').style.color = 'green'
+    }
+}
 const localStorageTransactions = JSON.parse(localStorage
     .getItem('transactions'))
 let transactions = localStorage
     .getItem('transactions') !== null ? localStorageTransactions : []
 
 const removeTransaction = ID => {
-    transactions = transactions.filter(transaction => 
+    transactions = transactions.filter(transaction =>
         transaction.id !== ID)
-    updateLocalStorage()    
+    updateLocalStorage()
     init()
 }
 
@@ -37,6 +62,7 @@ const addTransactionIntoDOM = transaction => {
 }
 
 const updateBalanceValues = () => {
+    
     const transactionsAmounts = transactions
         .map(transaction => transaction.amount)
     const total = transactionsAmounts
@@ -50,7 +76,7 @@ const updateBalanceValues = () => {
         .filter(value => value < 0)
         .reduce((accumulator, value) => accumulator + value, 0))
         .toFixed(2)
-    
+
     balanceDisplay.textContent = `R$ ${total}`
     incomeDisplay.textContent = `R$ ${income}`
     expenseDisplay.textContent = `R$ ${expense}`
@@ -70,16 +96,19 @@ const updateLocalStorage = () => {
 
 const generateID = () => Math.round(Math.random() * 1000)
 
-const addTransactions = () =>{
+const addTransactions = () => {
     const transactionTypeIndex = transactionType.options[transactionType.selectedIndex].value;
     const transactionName = inputTransactionName.value.trim()
+    today = dd + '/' + mm + '/' + yyyy
     let transactionAmountAux = inputTransactionAmount.value.trim().replace(/,/g, '.')
-    const transactionAmount = transactionAmountAux.replace("-",""
+    const transactionAmount = transactionAmountAux.replace("-", ""
     )
-    const transaction = { 
-        id: generateID(), 
-        name: transactionName, 
-        amount: transactionTypeIndex === "expense" ? (Number(transactionAmount) * (-1)) : Number(transactionAmount)
+   
+    const transaction = {
+        id: generateID(),
+        name: transactionName + " " + today,
+        amount: transactionTypeIndex === "expense" ? (Number(transactionAmount) * (-1)) : Number(transactionAmount),
+
     }
 
     transactions.push(transaction)
@@ -87,20 +116,26 @@ const addTransactions = () =>{
 
 form.addEventListener('submit', event => {
     event.preventDefault()
-
+    
+    
     const transactionName = inputTransactionName.value.trim()
     const transactionAmount = inputTransactionAmount.value.trim()
     const transactionTypeIndex = transactionType.options[transactionType.selectedIndex].value;
-    if (transactionName === '' || transactionAmount === '' || transactionTypeIndex === 'selectType'){
+    if (transactionName === '' || transactionAmount === '' || transactionTypeIndex === 'selectType') {
         alert('Por favor preencha os dados de Nome, Valor e Tipo da Transação!')
         return
     }
 
     addTransactions()
-    init()
+   
     updateLocalStorage()
-
+    
     inputTransactionName.value = ''
     inputTransactionAmount.value = ''
     transactionType.selectedIndex = '0'
+
+    
+
+    init()
+    
 })

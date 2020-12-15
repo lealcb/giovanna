@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
 
+
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -9,7 +10,7 @@
 }
 
 body {
-  background-color: #f7f7f7;
+  background-color: #064264;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,22 +28,37 @@ body {
 h1 {
   letter-spacing: 1px;
   margin: 0;
-  color: #2e75cc;
+  color: #ffffff;
 }
-
+h2 {
+  font-size: 25px;
+  color:#dedede;
+}
 h3 {
   border-bottom: 1px solid #bbb;
   padding-bottom: 10px;
   margin: 40px 0 10px;
+  color: #ffffff;
 }
 
 h4 {
   margin: 0;
   text-transform: uppercase;
+  color: #ffffff;
+}
+
+p.plus
+{
+  color: #59eb05;
+}
+
+p.minus
+{
+  color: #d83019;
 }
 
 .inc-exp-container {
-  background-color: #fff;
+  background-color: rgb(0, 18, 122);
   box-shadow: var(--box-shadow);
   padding: 20px;
   display: flex;
@@ -59,28 +75,19 @@ h4 {
   border-right: 1px solid #dedede;
 }
 
-.money {
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin: 5px 0;
-}
 
-.money.plus {
-  color: #2ecc71;
-}
-
-.money.minus {
-  color: #c0392b;
-}
 
 label {
-  display: inline-block;
+  text-align: center;
+  display: block;
   margin: 10px 0;
+  color: #dedede;
 }
 
 input[type='text'],
 input[type='number'],
 input[type='tel'],
+input[type='password'],
 select {
   border: 1px solid #dedede;
   border-radius: 2px;
@@ -92,9 +99,9 @@ select {
 
 .btn {
   cursor: pointer;
-  background-color: #ec0062;
+  background-color: #fcfcfc;
   box-shadow: var(--box-shadow);
-  color: #fff;
+  color: rgb(0, 0, 0);
   border: 0;
   display: block;
   font-size: 16px;
@@ -107,11 +114,29 @@ select {
 .delete-btn:focus {
   outline: 0;
 }
-
-.transactions {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 40px;
+.primeiroBotao {
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	background-color:#33bdef;
+	border-radius:6px;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.primeiroBotao:hover {
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	background-color:#019ad2;
+}
+.primeiroBotao:active {
+	position:relative;
+	top:1px;
 }
 
 .transactions li {
@@ -126,18 +151,18 @@ select {
 }
 
 .transactions li.plus {
-  border-right: 5px solid #2ecc71;
+  border-right: 10px solid #2ecc71;
 }
 
 .transactions li.minus {
-  border-right: 5px solid #c0392b;
+  border-right: 10px solid #c0392b;
 }
 
 .delete-btn {
   cursor: pointer;
-  background-color: #6d0b00;
+  background-color: #ffffff;
   border: 0;
-  color: #fff;
+  color: rgb(255, 0, 0);
   font-size: 20px;
   line-height: 20px;
   padding: 2px 5px;
@@ -148,7 +173,6 @@ select {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .transactions li:hover .delete-btn {
   opacity: 1;
 }

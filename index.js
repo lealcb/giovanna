@@ -12,13 +12,7 @@ let sys = {
         let checar = this.LoginsPermitidos.some(function(e){
             return e.user == LoginAcesso && e.password == SenhaAcesso
         })
-        if(checar == true){
-            location.href = "./transactions.html"
-        }
-        else
-        {
-            alert("Login e senha invalidos")
-        }
+        checar == true  ? location.href = "./transactions.html" : alert('Login e senha invalidos')
     }
 };
 
